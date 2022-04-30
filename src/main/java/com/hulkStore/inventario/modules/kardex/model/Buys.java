@@ -1,5 +1,8 @@
 package com.hulkStore.inventario.modules.kardex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hulkStore.inventario.core.BaseEntity;
+import com.hulkStore.inventario.util.Constants;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,12 +15,11 @@ import java.util.Date;
  * */
 
 @Entity
-@Table (name = "buys")
+@Table (schema = Constants.SCHEMA,name = "buys")
 @Data
-public class Buys {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer idBuy;
+@JsonIgnoreProperties ({ "hibernateLazyInitializer", "handler" })
+public class Buys extends BaseEntity {
+
     @Column (nullable = false, length = 20)
     private String  numberInvoceBuy;
     @Column (nullable = false)
@@ -26,6 +28,9 @@ public class Buys {
     private String  observation;
     @Column (nullable = false)
     private Integer amount;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="id_inventory",foreignKey = @ForeignKey(name = "buys_inventary_fk"), nullable = false )
+    private Inventory inventory;
 
 
 }

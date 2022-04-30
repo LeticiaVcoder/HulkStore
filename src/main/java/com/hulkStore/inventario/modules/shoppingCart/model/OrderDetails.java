@@ -1,5 +1,10 @@
 package com.hulkStore.inventario.modules.shoppingCart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hulkStore.inventario.core.BaseEntity;
+import com.hulkStore.inventario.modules.kardex.model.Inventory;
+import com.hulkStore.inventario.modules.kardex.model.Product;
+import com.hulkStore.inventario.util.Constants;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,16 +15,21 @@ import javax.persistence.*;
  *  @version 1.0
  * */
 @Entity
-@Table (name = "orderDetails")
+@Table(schema = Constants.SCHEMA, name = "orderDetails")
 @Data
-public class OrderDetails {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer idOrderDetails;
+@JsonIgnoreProperties ({ "hibernateLazyInitializer", "handler" })
+public class OrderDetails extends BaseEntity {
+
     @Column (nullable = false)
     private float   unitCost;
     @Column (nullable = false)
     private float   subTotal;
     @Column (nullable = false)
-    private Integer quantity;
+    private Integer   quantity;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="id_order",foreignKey = @ForeignKey(name = "orderDetails_order_fk"), nullable = false )
+    private Order   order;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="id_product",foreignKey = @ForeignKey(name = "orderDetails_product_fk"), nullable = false )
+    private Product product;
 }

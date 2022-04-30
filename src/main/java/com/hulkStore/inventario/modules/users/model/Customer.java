@@ -1,10 +1,15 @@
 package com.hulkStore.inventario.modules.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hulkStore.inventario.modules.kardex.model.Buys;
+import com.hulkStore.inventario.modules.shoppingCart.model.Order;
+import com.hulkStore.inventario.modules.shoppingCart.model.ShoppingCart;
+import com.hulkStore.inventario.util.Constants;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -13,14 +18,16 @@ import javax.persistence.Table;
  *  @version 1.0
  * */
 @Entity
-@Table (name = "customer")
+@Table(schema = Constants.SCHEMA, name = "customer", uniqueConstraints = {
+        @UniqueConstraint (columnNames = { "identifyCustomer" }, name = "identifyCustomer_uk") })
 @Data
-public class Customer extends WebUser {
+@JsonIgnoreProperties ({ "hibernateLazyInitializer", "handler" })
+public class Customer extends WebUserSystem {
 
     @Column (nullable = false, length = 20)
-    private String  IdentifyCustomer;
+    private String  identifyCustomer;
     @Column (nullable = false, length = 100)
-    private String  NameCustomer;
+    private String  nameCustomer;
     @Column (nullable = false, length = 100)
     private String  addressCustomer;
     @Column (nullable = false, length = 100)
@@ -28,5 +35,9 @@ public class Customer extends WebUser {
     @Column (nullable = false, length = 100)
     private String  creditCardInfo;
     @Column (nullable = false, length = 100)
-    private String  shippingInfo;
+    private String      shippingInfo;
+    @OneToMany (mappedBy="customer",cascade = CascadeType.ALL)
+    private List<Order>        listOrder = new ArrayList<Order>();
+    @OneToMany (mappedBy="customer",cascade = CascadeType.ALL)
+    private List<ShoppingCart> listShoppingCart = new ArrayList<ShoppingCart>();
 }

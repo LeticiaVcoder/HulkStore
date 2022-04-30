@@ -1,5 +1,7 @@
 package com.hulkStore.inventario.modules.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hulkStore.inventario.util.Constants;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -12,9 +14,10 @@ import javax.persistence.Table;
  *  @version 1.0
  * */
 @Entity
-@Table (name = "administrator")
+@Table (schema = Constants.SCHEMA,name = "administrator")
 @Data
-public class Administrator  extends WebUser {
+@JsonIgnoreProperties ({ "hibernateLazyInitializer", "handler" })
+public class Administrator  extends WebUserSystem {
     @Column (nullable = false, length = 100)
     private String  nameAdministrator;
     @Column (nullable = false, length = 100)
