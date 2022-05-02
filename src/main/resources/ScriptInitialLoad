@@ -1,0 +1,47 @@
+--Insert company table
+INSERT INTO hulk_store.company(
+	id, creation_date, creation_user, status, update_date, update_user, address, city, fono, name_sucursal)
+	VALUES (1, '22-04-30', 0, True, '22-04-30', 0,'Amazonas N45-60 y Pereira', 'Quito', '0999054949', 'Hulk Store Matriz');
+--Insert product table
+INSERT INTO hulk_store.product(
+	id, creation_date, creation_user, status, update_date, update_user, vuproduct, name_heroe, name_product)
+	--VALUES (1, '2022-04-30', 0, True, '2022-04-30', 0, 5.50, 'Marvel', 'Vaso pequeño');
+	--VALUES (2, '2022-04-30', 0, True, '2022-04-30', 0, 7.50, 'Marvel', 'Vaso mediano');
+	--VALUES (3, '2022-04-30', 0, True, '2022-04-30', 0, 10.50, 'Marvel', 'Vaso grande');
+	--VALUES (4, '2022-04-30', 0, True, '2022-04-30', 0, 5.50, 'DC comics', 'Camiseta pequeño');
+	--VALUES (5, '2022-04-30', 0, True, '2022-04-30', 0, 7.50, 'DC comics', 'Camiseta mediano');
+	--VALUES (6, '2022-04-30', 0, True, '2022-04-30', 0, 10.50, 'DC comics', 'Camiseta grande');
+	--VALUES (7, '2022-04-30', 0, True, '2022-04-30', 0, 3.50, 'Marvel', 'llavero pequeño');
+	--VALUES (8, '2022-04-30', 0, True, '2022-04-30', 0, 3.50, 'DC comics', 'llavero mediano');
+	--VALUES (9, '2022-04-30', 0, True, '2022-04-30', 0, 20.50, 'Alternativo 1', 'juguete carro');
+
+--Insert inventory table initial load
+INSERT INTO hulk_store.inventory(
+	id, creation_date, creation_user, status, update_date, update_user, cost_unit, id_product, input, inventory_amount, output, stock, id_company)
+	--VALUES (1, '2022-04-30', 0, True, '2022-04-30', 0, 5.50,0, 0, 0, 0, 0, 1);
+	--VALUES (2, '2022-04-30', 0, True, '2022-04-30', 0, 7.50,0, 0, 0, 0, 0, 1);
+	--VALUES (3, '2022-04-30', 0, True, '2022-04-30', 0, 10.50,0, 0, 0, 0, 0, 1);
+	--VALUES (4, '2022-04-30', 0, True, '2022-04-30', 0, 5.50, 0,0, 0, 0, 0, 1);
+	--VALUES (5, '2022-04-30', 0, True, '2022-04-30', 0, 7.50, 0,0, 0, 0, 0, 1);
+	--VALUES (6, '2022-04-30', 0, True, '2022-04-30', 0, 10.50, 0,0, 0, 0, 0, 1);
+	--VALUES (7, '2022-04-30', 0, True, '2022-04-30', 0, 3.50, 0, 0,0, 0, 0, 1);
+	--VALUES (8, '2022-04-30', 0, True, '2022-04-30', 0, 3.50, 0, 0,0, 0, 0, 1);
+	VALUES (9, '2022-04-30', 0, True, '2022-04-30', 0, 20.50, 0, 0,0, 0, 0, 1);
+--Insert  table buys load
+INSERT INTO hulk_store.buys(
+	id, creation_date, creation_user, status, update_date, update_user, amount, date_buy, number_invoce_buy, observation, id_product)
+	--VALUES (1, '2022-04-30', 0, True, '2022-04-30',0, 10, '2022-04-30', 'F001', 'Compra Inicial', 1);
+	--VALUES (2, '2022-04-30', 0, True, '2022-04-30',0, 10, '2022-04-30', 'F001', 'Compra Inicial', 2);
+	VALUES (3, '2022-04-30', 0, True, '2022-04-30',0, 10, '2022-04-30', 'F001', 'Compra Inicial', 3);
+
+Insert  table sales initial load
+INSERT INTO hulk_store.sales(
+	id, creation_date, creation_user, status, update_date, update_user, amount, date_sale, number_invoce_sale, observation, id_product)
+	--VALUES (1, '2022-04-30', 0, True, '2022-04-30',0, 10, '2022-04-30', 'FV001', '', 4);
+	VALUES (2, '2022-04-30', 0, True, '2022-04-30',0, 10, '2022-04-30', 'FV002', '', 5);
+
+
+INSERT INTO hulk_store.inventory(
+	id, creation_date, creation_user, status, update_date, update_user, cost_unit, id_product, input, inventory_amount, output, stock, id_buy, id_company, id_sales)
+	--VALUES (2, '2022-04-30', 0, True,'2022-04-30', 0, 5.50, 2, 30, 165,0 , 30, 1,1,null);
+	VALUES (3, '2022-04-30', 0, True,'2022-04-30', 0, 5.50, 3, 30, 55,20 , 10, null,1,1);

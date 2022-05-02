@@ -2,11 +2,14 @@ package com.hulkStore.inventario.modules.kardex.repository;
 
 import com.hulkStore.inventario.modules.kardex.model.Buys;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *  This interface contains the repository to persist Buys
  *  @author Leticia Villa
  *  @version 1.0
  * */
+@Repository
 public interface BuysRepository extends JpaRepository<Buys,Long> {
 
 }

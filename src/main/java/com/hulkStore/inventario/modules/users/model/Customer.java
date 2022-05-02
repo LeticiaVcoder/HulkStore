@@ -36,8 +36,5 @@ public class Customer extends WebUserSystem {
     private String  creditCardInfo;
     @Column (nullable = false, length = 100)
     private String      shippingInfo;
-   /* @OneToMany (mappedBy="customer",cascade = CascadeType.ALL)
-    private List<Order>        listOrder = new ArrayList<Order>();
-    @OneToMany (mappedBy="customer",cascade = CascadeType.ALL)
-    private List<ShoppingCart> listShoppingCart = new ArrayList<ShoppingCart>();*/
+
 }
