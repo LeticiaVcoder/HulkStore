@@ -31,8 +31,4 @@ public class Company extends BaseEntity {
     private String  fono;
     @Column (nullable = false, length = 50)
     private String  city;
-    @OneToMany(mappedBy="company",cascade = CascadeType.ALL)
-    private List<Employee> listEmployee = new ArrayList<Employee>();
-    @OneToOne(mappedBy="company",cascade =CascadeType.ALL)
-    private Inventory  inventory;
 }

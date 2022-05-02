@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ *
+ * this service class connects to several repositories and bundles  their functionality
+ *  @author Leticia Villa
+ *  @version 1.0
+ * */
 @Service
 public class BuysService  {
     @Autowired

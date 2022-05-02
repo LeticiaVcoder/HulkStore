@@ -24,13 +24,13 @@ public class Buys extends BaseEntity {
     private String  numberInvoceBuy;
     @Column (nullable = false)
     private Date    dateBuy;
-    @Column (nullable = false, length = 200)
+    @Column (nullable = true, length = 200)
     private String  observation;
     @Column (nullable = false)
     private Integer amount;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="id_inventory",foreignKey = @ForeignKey(name = "buys_inventary_fk"), nullable = false )
-    private Inventory inventory;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_product",foreignKey = @ForeignKey(name = "product_buys_fk"), nullable = false )
+    private Product product;
 
 }

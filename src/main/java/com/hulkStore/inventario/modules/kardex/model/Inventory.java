@@ -5,6 +5,7 @@ package com.hulkStore.inventario.modules.kardex.model;
  *  @version 1.0
  * */
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hulkStore.inventario.core.BaseEntity;
 import com.hulkStore.inventario.modules.users.model.Employee;
 import com.hulkStore.inventario.util.Constants;
@@ -21,6 +22,8 @@ import java.util.List;
 public class Inventory extends BaseEntity {
 
     @Column (nullable = false)
+    private Integer        idProduct;
+    @Column (nullable = false)
     private Integer        input;
     @Column (nullable = false)
     private Integer        output;
@@ -30,13 +33,15 @@ public class Inventory extends BaseEntity {
     private float   costUnit;
     @Column (nullable = false)
     private float    inventoryAmount;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="id_company",foreignKey = @ForeignKey(name = "inventory_company_fk"), nullable = false)
-    private Company        company;
-    @OneToMany(mappedBy="inventory",cascade = CascadeType.ALL)
-    private List<Product> listProduct = new ArrayList<Product>();
-    @OneToMany(mappedBy="inventory",cascade = CascadeType.ALL)
-    private List<Sales> listSales = new ArrayList<Sales>();
-    @OneToMany(mappedBy="inventory",cascade = CascadeType.ALL)
-    private List<Buys> listBuys = new ArrayList<Buys>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_company",foreignKey = @ForeignKey(name = "inventory_company_fk"), nullable = false )
+    private Company company;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_buy",foreignKey = @ForeignKey(name = "inventory_buy_fk"), nullable = true )
+    private Buys buy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_sales",foreignKey = @ForeignKey(name = "inventory_sales_fk"), nullable = true )
+    private Sales sales;
+
 }

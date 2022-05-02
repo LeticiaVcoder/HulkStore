@@ -1,5 +1,6 @@
 package com.hulkStore.inventario.modules.kardex.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hulkStore.inventario.core.BaseEntity;
 import com.hulkStore.inventario.modules.shoppingCart.model.OrderDetails;
@@ -29,12 +30,7 @@ public class Product extends BaseEntity {
     private String  nameHeroe;
     @Column (nullable = false)
     private float   VUProduct;
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name="id_inventory",foreignKey = @ForeignKey(name = "product_inventary_fk"), nullable = false )
-    private Inventory inventory;
 
-    @OneToMany(mappedBy="product",cascade = CascadeType.ALL)
-    private List<OrderDetails> listOrderDetails = new ArrayList<OrderDetails>();
 
 }
 

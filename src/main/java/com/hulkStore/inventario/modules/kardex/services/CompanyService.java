@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 import javax.persistence.Id;
 import java.util.List;
 
+/**
+ *
+ * this service class connects to several repositories and bundles  their functionality
+ *  @author Leticia Villa
+ *  @version 1.0
+ * */
 @Service
 public class CompanyService  {
 
@@ -24,7 +30,7 @@ public class CompanyService  {
     public void save(Company company){
         companyRepository.save(company);
     }
-    public Company searchBuy(Long id)
+    public Company searchCompany(Long id)
     {
         return  companyRepository.getById(id);
     }
